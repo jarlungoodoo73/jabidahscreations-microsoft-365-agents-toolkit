@@ -43,6 +43,7 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler("invalidArgs");
 
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
       sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
@@ -60,6 +61,7 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler("invalidArgs");
 
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
       sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
@@ -81,6 +83,7 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler();
 
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
       sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
@@ -102,6 +105,7 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler();
 
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
       sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",

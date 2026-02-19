@@ -77,6 +77,4 @@ export const TerminalName = "Microsoft 365 Agents Toolkit";
 
 export const InstallCopilotChatLink = "https://aka.ms/install-github-copilot-chat";
 
-export const ChatViewId = "workbench.panel.chat.view.copilot";
-
 export const MaximumNotificationOutputTroubleshootCount = 3;
