@@ -42,6 +42,16 @@ export async function openLifecycleTreeview(args?: any[]) {
 export async function openWelcomeHandler(...args: unknown[]): Promise<Result<unknown, FxError>> {
   ExtTelemetry.sendTelemetryEvent(TelemetryEvent.GetStarted, getTriggerFromProperty(args));
 
+  // Close chat-related panels if they're visible to prevent duplicate chat UI
+  // Users should have either the welcome view or the chat widget visible, but not both
+  // The chat view can be in the auxiliary bar, so we attempt to close it
+  // This is similar to the VS Code internal implementation that uses IViewsService.closeView
+  try {
+    await vscode.commands.executeCommand("workbench.action.closeAuxiliaryBar");
+  } catch {
+    // Ignore errors if the auxiliary bar is not visible or the command fails
+  }
+
   const data = await vscode.commands.executeCommand(
     "workbench.action.openWalkthrough",
     getBuildIntelligentAppsWalkthroughID()

@@ -43,7 +43,8 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler("invalidArgs");
 
-      sandbox.assert.calledOnceWithExactly(
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
+      sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
         "TeamsDevApp.ms-teams-vscode-extension#buildIntelligentApps"
@@ -60,7 +61,8 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler("invalidArgs");
 
-      sandbox.assert.calledOnceWithExactly(
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
+      sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
         "TeamsDevApp.ms-teams-vscode-extension#buildIntelligentAppsWithChat"
@@ -81,7 +83,8 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler();
 
-      sandbox.assert.calledOnceWithExactly(
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
+      sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
         "TeamsDevApp.ms-teams-vscode-extension#buildIntelligentApps"
@@ -102,7 +105,8 @@ describe("Control Handlers", () => {
 
       await openWelcomeHandler();
 
-      sandbox.assert.calledOnceWithExactly(
+      sandbox.assert.calledWith(executeCommands, "workbench.action.closeAuxiliaryBar");
+      sandbox.assert.calledWith(
         executeCommands,
         "workbench.action.openWalkthrough",
         "TeamsDevApp.ms-teams-vscode-extension#buildIntelligentApps"
