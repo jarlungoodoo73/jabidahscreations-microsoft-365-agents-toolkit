@@ -25,6 +25,7 @@ import { openFolderInExplorer } from "../utils/commonUtils";
 import { getTriggerFromProperty } from "../utils/telemetryUtils";
 import { getDefaultString } from "../utils/localizeUtils";
 import { getBuildIntelligentAppsWalkthroughID } from "./walkthrough";
+import { ChatViewId } from "../constants";
 
 export async function openLifecycleTreeview(args?: any[]) {
   ExtTelemetry.sendTelemetryEvent(
@@ -41,6 +42,14 @@ export async function openLifecycleTreeview(args?: any[]) {
 // args[0] is telemetry trigger from
 export async function openWelcomeHandler(...args: unknown[]): Promise<Result<unknown, FxError>> {
   ExtTelemetry.sendTelemetryEvent(TelemetryEvent.GetStarted, getTriggerFromProperty(args));
+
+  // Close the chat panel if it's visible to prevent duplicate chat UI
+  // Users should have either the welcome view or the chat widget visible, but not both
+  try {
+    await vscode.commands.executeCommand("workbench.action.closePanel", ChatViewId);
+  } catch {
+    // Ignore errors if the panel is not visible or the command fails
+  }
 
   const data = await vscode.commands.executeCommand(
     "workbench.action.openWalkthrough",
